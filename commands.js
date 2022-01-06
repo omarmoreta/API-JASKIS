@@ -255,4 +255,13 @@ db.scavengers.insertMany([
   ])
 
   // Find all Scavengers who joined the team after December 31, 2011
-  
+  db.scavengers.find( { joined: { $gt: new Date("2011-12-31") } })
+
+  // Find all Scavengers who helped catch Thanoceros
+  db.scavengers.find( { captured: { $elemMatch: { name: "Thanoceros"} } })
+
+  // Find all Scavengers who helped catch an animal bounty with a reward greater than $11000
+  db.scavengers.find( { captured: { $elemMatch: { reward: { $gt: 11000 } } } })
+
+  // Find all Scavengers that don't have a weapon
+  db.scavengers.find( { weapon: null })
